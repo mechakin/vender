@@ -20,7 +20,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const formSchema = z.object({
-  name: z.string().min(1, "name must contain more than 1 character"),
+  name: z.string().min(1, "Name must contain more than 1 character."),
 });
 
 export const StoreModal = () => {
