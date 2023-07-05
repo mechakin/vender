@@ -31,7 +31,7 @@ export default function ImageUpload({
     setIsMounted(true);
   }, []);
 
-  const onUpload = (result: any) => {
+  const onUpload = (result: Result) => {
     onChange(result.info.secure_url);
   };
 
