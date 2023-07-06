@@ -31,9 +31,12 @@ const formSchema = z.object({
   name: z.string().min(1, "Name must contain more than 1 character."),
   value: z
     .string()
-    .min(4)
-    .max(9)
-    .regex(/^#/, { message: "String must be a valid hex code" }),
+    .min(4, "Value must be a valid hex code with at least 4 characters total.")
+    .max(
+      9,
+      "Value must be a valid hex code with at maximum 9 characters total."
+    )
+    .regex(/^#/, { message: "Value must be a valid hex code." }),
 });
 
 type ColorFormValues = z.infer<typeof formSchema>;
