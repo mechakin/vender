@@ -64,7 +64,7 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
         </div>
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Overview</CardTitle>
+            <CardTitle className="text-base font-medium">Overview</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
             <Overview data={graphRevenue} />
