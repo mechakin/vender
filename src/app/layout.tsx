@@ -22,7 +22,7 @@ export default function RootLayout({
     <ClerkProvider appearance={{baseTheme: dark}}>
       <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
-          <ThemeProvider attribute="class" defaultTheme="system">
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ToastProvider />
             <ModalProvider />
             {children}
