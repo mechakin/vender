@@ -2,25 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ImagePlus, Trash } from "lucide-react";
-import { CldUploadWidget } from "next-cloudinary";
+import { Trash } from "lucide-react";
 import Image from "next/image";
+import { UploadButton } from "@/lib/uploadthing";
+import toast from "react-hot-toast";
 
 type ImageUploadProps = {
-  disabled?: boolean;
   onChange: (value: string) => void;
   onRemove: (value: string) => void;
   value: string[];
 };
 
-type Result = {
-  info: {
-    secure_url: string;
-  };
-};
-
 export default function ImageUpload({
-  disabled,
   onChange,
   onRemove,
   value,
@@ -31,14 +24,14 @@ export default function ImageUpload({
     setIsMounted(true);
   }, []);
 
-  const onUpload = (result: Result) => {
-    onChange(result.info.secure_url);
+  const onUpload = (result: string) => {
+    onChange(result);
   };
 
   if (!isMounted) return null;
 
   return (
-    <div>
+    <>
       <div className="mb-4 flex items-center gap-4">
         {value.map((url) => (
           <div
@@ -55,34 +48,26 @@ export default function ImageUpload({
                 <Trash className="h-4 w-4" />
               </Button>
             </div>
-            <Image
-              fill
-              className="object-cover"
-              alt="Billboard Image"
-              src={url}
-            />
+            <Image fill className="object-cover" alt="Image" src={url} />
           </div>
         ))}
       </div>
-      <CldUploadWidget onUpload={onUpload} uploadPreset="dxwdrilw">
-        {({ open }) => {
-          const onClick = () => {
-            open();
-          };
-
-          return (
-            <Button
-              type="button"
-              disabled={disabled}
-              variant="secondary"
-              onClick={onClick}
-            >
-              <ImagePlus className="mr-2 h-4 w-4" />
-              Upload Image
-            </Button>
-          );
-        }}
-      </CldUploadWidget>
-    </div>
+      <div className="flex justify-start pt-4">
+        <UploadButton
+          endpoint="imageUploader"
+          onClientUploadComplete={(res) => {
+            // Do something with the response
+            if (res) {
+              const imageUrl = res[0].fileUrl;
+              onUpload(imageUrl);
+            }
+          }}
+          onUploadError={(error: Error) => {
+            // Do something with the error.
+            toast.error(`${error.message}`);
+          }}
+        />
+      </div>
+    </>
   );
 }

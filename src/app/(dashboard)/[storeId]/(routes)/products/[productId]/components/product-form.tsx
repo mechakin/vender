@@ -45,7 +45,8 @@ const formSchema = z.object({
   images: z
     .object({ url: z.string().url() })
     .array()
-    .min(1, "Must include at least 1 image."),
+    .min(1, "Must include at least 1 image.")
+    .max(4, "Can not contain more than 4 images"),
   price: z.coerce.number().min(1, "Price must be at least $0.01."),
   categoryId: z.string().min(1, "Category must exist."),
   colorId: z.string().min(1, "Color must exist."),
@@ -162,10 +163,10 @@ export default function ProductForm({
                 <FormControl>
                   <ImageUpload
                     value={field.value.map((image) => image.url)}
-                    disabled-={loading}
-                    onChange={(url) =>
-                      field.onChange([...field.value, { url }])
-                    }
+                    onChange={(url) => {
+                      field.onChange([...field.value, { url }]);
+                      console.log(field.value)
+                    }}
                     onRemove={(url) =>
                       field.onChange([
                         ...field.value.filter((current) => current.url !== url),

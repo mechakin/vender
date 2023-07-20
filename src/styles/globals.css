@@ -82,3 +82,21 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+.ut-hidden {
+  @apply hidden;
+}
+.ut-bg-blue-600 {
+  @apply flex h-10 w-36 cursor-pointer items-center justify-center rounded-md bg-primary hover:bg-primary/90 text-sm font-medium;
+}
+
+.ut-bg-blue-400 {
+  @apply bg-white;
+}
+.ut-text-white {
+  @apply dark:text-black text-white;
+}
+
+.ut-text-xs {
+  @apply text-center text-xs leading-5 text-foreground;
+}

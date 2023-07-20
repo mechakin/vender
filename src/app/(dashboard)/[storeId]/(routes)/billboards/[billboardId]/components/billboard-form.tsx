@@ -30,7 +30,7 @@ type BillboardFormProps = {
 
 const formSchema = z.object({
   label: z.string().min(1, "Label must contain more than 1 character."),
-  imageUrl: z.string().url("Image URL must be a valid URL"),
+  imageUrl: z.string().url("Image URL must be a valid URL."),
 });
 
 type BillboardFormValues = z.infer<typeof formSchema>;
@@ -126,9 +126,9 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
               <FormItem>
                 <FormLabel>Background Image</FormLabel>
                 <FormControl>
+                  
                   <ImageUpload
                     value={field.value ? [field.value] : []}
-                    disabled-={loading}
                     onChange={(url) => field.onChange(url)}
                     onRemove={() => field.onChange("")}
                   />

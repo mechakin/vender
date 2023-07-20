@@ -1,3 +1,4 @@
+import "@uploadthing/react/styles.css";
 import "../styles/globals.css";
 import { dark } from '@clerk/themes';
 import { Inter } from "next/font/google";
