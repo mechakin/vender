@@ -23,11 +23,18 @@ export default async function BillboardsPage({
     },
   });
 
+  const TRUNCATE_INDEX = 20;
+
   const formattedProducts: ProductColumn[] = products.map((item) => ({
     id: item.id,
     name: item.name,
-    isFeatured: item.isFeatured,
-    isArchived: item.isArchived,
+    description: item.description.substring(0, TRUNCATE_INDEX) + "...",
+    isFeatured:
+      item.isFeatured.toString().charAt(0).toUpperCase() +
+      item.isFeatured.toString().slice(1),
+    isArchived:
+      item.isArchived.toString().charAt(0).toUpperCase() +
+      item.isArchived.toString().slice(1),
     price: formatter.format(item.price.toNumber()),
     category: item.category.name,
     size: item.size.name,

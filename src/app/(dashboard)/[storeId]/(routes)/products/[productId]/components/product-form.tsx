@@ -32,6 +32,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
 
 type ProductFormProps = {
   initialData: (Product & { images: Image[] }) | null;
@@ -42,6 +43,7 @@ type ProductFormProps = {
 
 const formSchema = z.object({
   name: z.string().min(1, "Name must contain more than 1 character."),
+  description: z.string().min(1, "Description must contain more than 1 character.").max(2000, "Description must contain less than 2000 characters."),
   images: z
     .object({ url: z.string().url() })
     .array()
@@ -165,7 +167,6 @@ export default function ProductForm({
                     value={field.value.map((image) => image.url)}
                     onChange={(url) => {
                       field.onChange([...field.value, { url }]);
-                      console.log(field.value)
                     }}
                     onRemove={(url) =>
                       field.onChange([
@@ -189,6 +190,23 @@ export default function ProductForm({
                     <Input
                       disabled={loading}
                       placeholder="Product name"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={loading}
+                      placeholder="Product description"
                       {...field}
                     />
                   </FormControl>

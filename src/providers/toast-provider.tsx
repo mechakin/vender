@@ -13,8 +13,8 @@ export const ToastProvider = () => {
       toastOptions={{
         style: {
           borderRadius: "10px",
-          background: isDarkMode ? '#333' : '#fff',
-          color: isDarkMode ? '#fff' : '#333',
+          background: isDarkMode ? '#292524' : '#fff',
+          color: isDarkMode ? '#fff' : '#292524',
         },
       }}
     />
