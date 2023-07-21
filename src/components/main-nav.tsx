@@ -1,8 +1,19 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
+import * as React from "react";
+import { Menu, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 export function MainNav({
   className,
@@ -10,6 +21,7 @@ export function MainNav({
 }: React.HTMLAttributes<HTMLElement>) {
   const pathname = usePathname();
   const params = useParams();
+  const { setTheme } = useTheme();
 
   const routes = [
     {
@@ -55,21 +67,54 @@ export function MainNav({
   ];
 
   return (
-    <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
-      {routes.map((route) => (
-        <Link
-          href={route.href}
-          key={route.href}
-          className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
-            route.active
-              ? "text-black dark:text-white"
-              : "text-muted-foreground"
-          )}
-        >
-          {route.label}
-        </Link>
-      ))}
-    </nav>
+    <>
+      <div className="ml-2 block lg:hidden">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="icon">
+              <Menu className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Menu className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start">
+            {routes.map((route) => {
+              return (
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  <Link
+                    href={route.href}
+                    key={route.href}
+                    className={cn(
+                      "text-sm font-medium transition-colors hover:text-primary",
+                      route.active
+                        ? "text-black dark:text-white"
+                        : "text-muted-foreground"
+                    )}
+                  >
+                    {route.label}
+                  </Link>
+                </DropdownMenuItem>
+              );
+            })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
+      <nav className={cn("hidden items-center space-x-6 lg:flex", className)}>
+        {routes.map((route) => (
+          <Link
+            href={route.href}
+            key={route.href}
+            className={cn(
+              "text-sm font-medium transition-colors hover:text-primary",
+              route.active
+                ? "text-black dark:text-white"
+                : "text-muted-foreground"
+            )}
+          >
+            {route.label}
+          </Link>
+        ))}
+      </nav>
+    </>
   );
 }

@@ -17,7 +17,7 @@ export default function OrderClient({ data }: OrderClientProps) {
         description="Manage orders for your store"
       />
       <Separator />
-      <DataTable columns={columns} data={data} searchKey="label" />
+      <DataTable columns={columns} data={data} searchKey="products" />
     </>
   );
 }
