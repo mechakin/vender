@@ -36,14 +36,12 @@ export default function CellAction({ data }: CellActionProps) {
   const onConfirm = async () => {
     try {
       setLoading(true);
-      await axios.delete(
-        `/api/${params.storeId}/categories/${data.id}`
-      );
+      await axios.delete(`/api/${params.storeId}/categories/${data.id}`);
       toast.success("Category deleted.");
       router.refresh();
     } catch (error) {
       toast.error(
-        "Make sure you removed all products using this billboard first."
+        "Make sure you removed all products using this category first."
       );
     } finally {
       setLoading(false);
