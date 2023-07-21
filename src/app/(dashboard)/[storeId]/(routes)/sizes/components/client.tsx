@@ -33,9 +33,6 @@ export default function SizeClient({ data }: SizeClientProps) {
       </div>
       <Separator />
       <DataTable columns={columns} data={data} searchKey="name"/>
-      <Heading title="API" description="API calls for sizes" />
-      <Separator />
-      <ApiList entityName="sizes" entityIdName="sizeId"/>
     </>
   );
 }
