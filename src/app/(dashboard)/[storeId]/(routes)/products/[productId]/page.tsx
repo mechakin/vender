@@ -11,7 +11,9 @@ export default async function ProductPage({
       id: params.productId,
     },
     include: {
-      images: true,
+      images: {
+        orderBy: { updatedAt: "desc" },
+      },
     },
   });
 

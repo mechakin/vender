@@ -43,7 +43,10 @@ type ProductFormProps = {
 
 const formSchema = z.object({
   name: z.string().min(1, "Name must contain more than 1 character."),
-  description: z.string().min(1, "Description must contain more than 1 character.").max(2000, "Description must contain less than 2000 characters."),
+  description: z
+    .string()
+    .min(1, "Description must contain more than 1 character.")
+    .max(2000, "Description must contain less than 2000 characters."),
   images: z
     .object({ url: z.string().url() })
     .array()
@@ -165,9 +168,9 @@ export default function ProductForm({
                 <FormControl>
                   <ImageUpload
                     value={field.value.map((image) => image.url)}
-                    onChange={(url) => {
-                      field.onChange([...field.value, { url }]);
-                    }}
+                    onChange={(url) =>
+                      field.onChange([...field.value, { url }])
+                    }
                     onRemove={(url) =>
                       field.onChange([
                         ...field.value.filter((current) => current.url !== url),
