@@ -80,6 +80,7 @@ model Product {
   category    Category    @relation("CategoryToProduct", fields: [categoryId], references: [id])
   name        String
   price       Decimal
+  quantity    Int
   description String      @db.VarChar(2000)
   isFeatured  Boolean     @default(false)
   isArchived  Boolean     @default(false)

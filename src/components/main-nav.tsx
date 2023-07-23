@@ -2,10 +2,7 @@
 
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
-import * as React from "react";
-import { Menu, Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
-
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -21,7 +18,6 @@ export function MainNav({
 }: React.HTMLAttributes<HTMLElement>) {
   const pathname = usePathname();
   const params = useParams();
-  const { setTheme } = useTheme();
 
   const routes = [
     {
@@ -79,7 +75,7 @@ export function MainNav({
           <DropdownMenuContent align="start">
             {routes.map((route) => {
               return (
-                <DropdownMenuItem onClick={() => setTheme("system")}>
+                <DropdownMenuItem>
                   <Link
                     href={route.href}
                     key={route.href}
