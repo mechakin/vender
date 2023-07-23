@@ -52,7 +52,17 @@ const formSchema = z.object({
     .array()
     .min(1, "Must include at least 1 image.")
     .max(4, "Can not contain more than 4 images"),
-  price: z.coerce.number().min(1, "Price must be at least $0.01."),
+  price: z.coerce
+    .number()
+    .min(0.01, "Price must be at least $0.01.")
+    .refine(
+      (x) => x * 100 - Math.trunc(x * 100) < Number.EPSILON,
+      "Price can not be more than 2 decimals."
+    ),
+  quantity: z.coerce
+    .number()
+    .int("Quantity must be a whole number.")
+    .min(1, "Quantity must be at least 1."),
   categoryId: z.string().min(1, "Category must exist."),
   colorId: z.string().min(1, "Color must exist."),
   sizeId: z.string().min(1, "Size must exist."),
@@ -89,6 +99,8 @@ export default function ProductForm({
       : {
           name: "",
           images: [],
+          description: "",
+          quantity: 0,
           price: 0,
           categoryId: "",
           colorId: "",
@@ -182,7 +194,7 @@ export default function ProductForm({
               </FormItem>
             )}
           />
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-8">
             <FormField
               control={form.control}
               name="name"
@@ -200,23 +212,7 @@ export default function ProductForm({
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      disabled={loading}
-                      placeholder="Product description"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             <FormField
               control={form.control}
               name="price"
@@ -235,6 +231,25 @@ export default function ProductForm({
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="quantity"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Quantity</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={loading}
+                      placeholder="100"
+                      type="number"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="categoryId"
@@ -333,9 +348,26 @@ export default function ProductForm({
             />
             <FormField
               control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={loading}
+                      placeholder="Product description"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="isFeatured"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormItem className="flex max-h-28 flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
                     <Checkbox
                       checked={field.value}
@@ -356,7 +388,7 @@ export default function ProductForm({
               control={form.control}
               name="isArchived"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                <FormItem className="flex max-h-28 flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
                     <Checkbox
                       checked={field.value}

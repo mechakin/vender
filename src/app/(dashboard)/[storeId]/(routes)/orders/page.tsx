@@ -37,7 +37,9 @@ export default async function OrdersPage({
         return total + Number(item.product.price);
       }, 0)
     ),
-    isPaid: item.isPaid,
+    isPaid:
+      item.isPaid.toString().charAt(0).toUpperCase() +
+      item.isPaid.toString().slice(1),
     createdAt: format(item.createdAt, "MMMM do, yyyy"),
   }));
 

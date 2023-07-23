@@ -94,6 +94,7 @@ body,
 .ut-bg-blue-400 {
   @apply bg-white;
 }
+
 .ut-text-white {
   @apply dark:text-black text-white;
 }

@@ -14,6 +14,7 @@ export async function POST(
       name,
       description,
       price,
+      quantity,
       categoryId,
       colorId,
       sizeId,
@@ -26,8 +27,8 @@ export async function POST(
     if (!name) return new NextResponse("Name is required", { status: 400 });
     if (!description)
       return new NextResponse("Description is required", { status: 400 });
-    if (!price)
-      return new NextResponse("Price is required", { status: 400 });
+    if (!price) return new NextResponse("Price is required", { status: 400 });
+    if (!quantity) return new NextResponse("Quantity is required", { status: 400 });
     if (!categoryId)
       return new NextResponse("Category ID is required", { status: 400 });
     if (!colorId)
@@ -53,6 +54,7 @@ export async function POST(
       data: {
         name,
         description,
+        quantity,
         price,
         categoryId,
         colorId,
