@@ -1,6 +1,6 @@
 import "@uploadthing/react/styles.css";
 import "../styles/globals.css";
-import { dark } from '@clerk/themes';
+import { dark } from "@clerk/themes";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/providers/modal-provider";
@@ -20,7 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider appearance={{baseTheme: dark}}>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+        variables: {
+          colorPrimary: "#adfa1d",
+          colorText: "white",
+        },
+      }}
+    >
       <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

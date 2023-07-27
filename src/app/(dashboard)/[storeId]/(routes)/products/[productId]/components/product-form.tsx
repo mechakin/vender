@@ -59,10 +59,6 @@ const formSchema = z.object({
       (x) => x * 100 - Math.trunc(x * 100) < Number.EPSILON,
       "Price can not be more than 2 decimals."
     ),
-  quantity: z.coerce
-    .number()
-    .int("Quantity must be a whole number.")
-    .min(1, "Quantity must be at least 1."),
   categoryId: z.string().min(1, "Category must exist."),
   colorId: z.string().min(1, "Color must exist."),
   sizeId: z.string().min(1, "Size must exist."),
@@ -100,7 +96,6 @@ export default function ProductForm({
           name: "",
           images: [],
           description: "",
-          quantity: 0,
           price: 0,
           categoryId: "",
           colorId: "",
@@ -231,25 +226,6 @@ export default function ProductForm({
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="quantity"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Quantity</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={loading}
-                      placeholder="100"
-                      type="number"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <FormField
               control={form.control}
               name="categoryId"

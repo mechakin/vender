@@ -36,7 +36,6 @@ export default async function BillboardsPage({
       item.isArchived.toString().charAt(0).toUpperCase() +
       item.isArchived.toString().slice(1),
     price: formatter.format(item.price.toNumber()),
-    quantity: item.quantity,
     category: item.category.name,
     size: item.size.name,
     color: item.color.value,
