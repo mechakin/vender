@@ -35,7 +35,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 
 type ProductFormProps = {
-  initialData: (Product & { images: Image[] }) | null;
+  initialData: ((Product & { images: Image[] }) & { sizes: {size: Size}[] }) | null;
   categories: Category[];
   colors: Color[];
   sizes: Size[];
@@ -61,7 +61,11 @@ const formSchema = z.object({
     ),
   categoryId: z.string().min(1, "Category must exist."),
   colorId: z.string().min(1, "Color must exist."),
-  sizeId: z.string().min(1, "Size must exist."),
+  sizes: z
+    .string()
+    .min(1, "Size must exist.")
+    .array()
+    .min(1, "Must contain at least 1 size."),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
 });
@@ -91,6 +95,7 @@ export default function ProductForm({
       ? {
           ...initialData,
           price: parseFloat(String(initialData?.price)),
+          sizes: initialData.sizes.map((size) => size.size.id),
         }
       : {
           name: "",
@@ -99,7 +104,7 @@ export default function ProductForm({
           price: 0,
           categoryId: "",
           colorId: "",
-          sizeId: "",
+          sizes: [],
           isFeatured: false,
           isArchived: false,
         },
@@ -189,7 +194,7 @@ export default function ProductForm({
               </FormItem>
             )}
           />
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid gap-8 lg:grid-cols-3">
             <FormField
               control={form.control}
               name="name"
@@ -260,32 +265,51 @@ export default function ProductForm({
             />
             <FormField
               control={form.control}
-              name="sizeId"
-              render={({ field }) => (
+              name="sizes"
+              render={() => (
                 <FormItem>
-                  <FormLabel>Size</FormLabel>
-                  <Select
-                    disabled={loading}
-                    onValueChange={field.onChange}
-                    value={field.value}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue
-                          defaultValue={field.value}
-                          placeholder="Select a size"
-                        />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {sizes.map((size) => (
-                        <SelectItem key={size.id} value={size.id}>
-                          {size.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <div className="mb-4">
+                    <FormLabel className="text-base">Sizes</FormLabel>
+                    <FormDescription>
+                      Select the sizes you want to include in the product.
+                    </FormDescription>
+                  </div>
+                  {sizes.map((size) => (
+                    <FormField
+                      key={size.id}
+                      control={form.control}
+                      name="sizes"
+                      render={({ field }) => {
+                        return (
+                          <FormItem
+                            key={size.id}
+                            className="flex flex-row items-start space-x-3 space-y-0"
+                          >
+                            <FormControl>
+                              <Checkbox
+                                checked={(field.value || []).includes(size.id)}
+                                onCheckedChange={(checked) => {
+                                  return checked
+                                    ? field.onChange([
+                                        ...(field.value || []),
+                                        size.id,
+                                      ])
+                                    : field.onChange(
+                                        (field.value || []).filter(
+                                          (value) => value !== size.id
+                                        )
+                                      );
+                                }}
+                              />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              {size.name}
+                            </FormLabel>
+                          </FormItem>
+                        );
+                      }}
+                    />
+                  ))}
                   <FormMessage />
                 </FormItem>
               )}

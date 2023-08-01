@@ -14,6 +14,7 @@ export default async function ProductPage({
       images: {
         orderBy: { updatedAt: "desc" },
       },
+      sizes: { include: { size: true } },
     },
   });
 
@@ -40,9 +41,9 @@ export default async function ProductPage({
       <div className="flex-1 space-y-4 p-8 pt-6">
         <ProductForm
           categories={categories}
-          sizes={sizes}
           colors={colors}
           initialData={product}
+          sizes={sizes}
         />
       </div>
     </div>

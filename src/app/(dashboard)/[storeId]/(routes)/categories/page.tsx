@@ -3,7 +3,7 @@ import CategoryClient from "./components/client";
 import { CategoryColumn } from "./components/columns";
 import { format } from "date-fns";
 
-export default async function CategoryPage({
+export default async function CategoriesPage({
   params,
 }: {
   params: { categoryId: string };

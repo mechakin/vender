@@ -4,7 +4,7 @@ import { ProductColumn } from "./components/columns";
 import { format } from "date-fns";
 import { formatter } from "@/lib/utils";
 
-export default async function BillboardsPage({
+export default async function ProductsPage({
   params,
 }: {
   params: { storeId: string };
@@ -15,7 +15,7 @@ export default async function BillboardsPage({
     },
     include: {
       category: true,
-      size: true,
+      sizes: { include: { size: true } },
       color: true,
     },
     orderBy: {
@@ -37,7 +37,7 @@ export default async function BillboardsPage({
       item.isArchived.toString().slice(1),
     price: formatter.format(item.price.toNumber()),
     category: item.category.name,
-    size: item.size.name,
+    sizes: item.sizes.map(sizeItem => sizeItem.size.value).join(', '),
     color: item.color.value,
     createdAt: format(item.createdAt, "MMMM do, yyyy"),
   }));
