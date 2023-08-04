@@ -28,6 +28,7 @@ export default async function ProductPage({
     where: {
       storeId: params.storeId,
     },
+    orderBy: { updatedAt: "asc" },
   });
 
   const colors = await prismadb.color.findMany({

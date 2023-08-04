@@ -17,7 +17,10 @@ export async function GET(
       include: {
         images: true,
         category: true,
-        sizes: { include: { size: true } },
+        sizes: {
+          include: { size: true },
+          orderBy: { size: { updatedAt: "asc" } },
+        },
         color: true,
       },
     });

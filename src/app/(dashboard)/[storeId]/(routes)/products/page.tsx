@@ -15,7 +15,10 @@ export default async function ProductsPage({
     },
     include: {
       category: true,
-      sizes: { include: { size: true } },
+      sizes: {
+        include: { size: true },
+        orderBy: { size: { updatedAt: "asc" } },
+      },
       color: true,
     },
     orderBy: {
@@ -37,8 +40,8 @@ export default async function ProductsPage({
       item.isArchived.toString().slice(1),
     price: formatter.format(item.price.toNumber()),
     category: item.category.name,
-    sizes: item.sizes.map(sizeItem => sizeItem.size.value).join(', '),
-    color: item.color.value,
+    sizes: item.sizes.map((sizeItem) => sizeItem.size.value).join(", "),
+    color: item.color,
     createdAt: format(item.createdAt, "MMMM do, yyyy"),
   }));
 

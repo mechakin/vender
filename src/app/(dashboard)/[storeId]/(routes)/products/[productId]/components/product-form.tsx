@@ -35,7 +35,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 
 type ProductFormProps = {
-  initialData: ((Product & { images: Image[] }) & { sizes: {size: Size}[] }) | null;
+  initialData:
+    | ((Product & { images: Image[] }) & { sizes: { size: Size }[] })
+    | null;
   categories: Category[];
   colors: Color[];
   sizes: Size[];
@@ -265,57 +267,6 @@ export default function ProductForm({
             />
             <FormField
               control={form.control}
-              name="sizes"
-              render={() => (
-                <FormItem>
-                  <div className="mb-4">
-                    <FormLabel className="text-base">Sizes</FormLabel>
-                    <FormDescription>
-                      Select the sizes you want to include in the product.
-                    </FormDescription>
-                  </div>
-                  {sizes.map((size) => (
-                    <FormField
-                      key={size.id}
-                      control={form.control}
-                      name="sizes"
-                      render={({ field }) => {
-                        return (
-                          <FormItem
-                            key={size.id}
-                            className="flex flex-row items-start space-x-3 space-y-0"
-                          >
-                            <FormControl>
-                              <Checkbox
-                                checked={(field.value || []).includes(size.id)}
-                                onCheckedChange={(checked) => {
-                                  return checked
-                                    ? field.onChange([
-                                        ...(field.value || []),
-                                        size.id,
-                                      ])
-                                    : field.onChange(
-                                        (field.value || []).filter(
-                                          (value) => value !== size.id
-                                        )
-                                      );
-                                }}
-                              />
-                            </FormControl>
-                            <FormLabel className="font-normal">
-                              {size.name}
-                            </FormLabel>
-                          </FormItem>
-                        );
-                      }}
-                    />
-                  ))}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="colorId"
               render={({ field }) => (
                 <FormItem>
@@ -359,6 +310,59 @@ export default function ProductForm({
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="sizes"
+              render={() => (
+                <FormItem>
+                  <div className="">
+                    <FormLabel>Sizes</FormLabel>
+                  </div>
+                  <div className="space-y-3 rounded-md border p-4 lg:grid lg:grid-cols-3 lg:gap-y-3 lg:space-y-0">
+                    {sizes.map((size) => (
+                      <FormField
+                        key={size.id}
+                        control={form.control}
+                        name="sizes"
+                        render={({ field }) => {
+                          return (
+                            <FormItem
+                              key={size.id}
+                              className="flex flex-row items-start space-x-3 space-y-0"
+                            >
+                              <FormControl>
+                                <Checkbox
+                                  checked={(field.value || []).includes(
+                                    size.id
+                                  )}
+                                  onCheckedChange={(checked) => {
+                                    return checked
+                                      ? field.onChange([
+                                          ...(field.value || []),
+                                          size.id,
+                                        ])
+                                      : field.onChange(
+                                          (field.value || []).filter(
+                                            (value) => value !== size.id
+                                          )
+                                        );
+                                  }}
+                                />
+                              </FormControl>
+                              <FormLabel className="font-normal">
+                                {size.name}
+                              </FormLabel>
+                            </FormItem>
+                          );
+                        }}
+                      />
+                    ))}
+                  </div>
+
                   <FormMessage />
                 </FormItem>
               )}
