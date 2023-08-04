@@ -88,7 +88,7 @@ body,
 }
 
 .ut-bg-blue-600 {
-  @apply flex h-10 w-36 cursor-pointer items-center justify-center rounded-md bg-primary hover:bg-primary/90 text-sm font-medium;
+  @apply flex h-10 w-36 cursor-pointer items-center justify-center rounded-md bg-primary text-sm font-medium hover:bg-primary/90;
 }
 
 .ut-bg-blue-400 {
@@ -96,7 +96,7 @@ body,
 }
 
 .ut-text-white {
-  @apply dark:text-black text-white;
+  @apply text-white dark:text-black;
 }
 
 .ut-text-xs {

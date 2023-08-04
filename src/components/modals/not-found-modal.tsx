@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Modal } from "@/components/ui/modal";
-import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
 
 export default function NotFoundModal({}) {
   const [isMounted, setIsMounted] = useState(false);

@@ -1,8 +1,8 @@
 import prismadb from "@/lib/db";
+import { formatter } from "@/lib/utils";
+import { format } from "date-fns";
 import OrderClient from "./components/client";
 import { OrderColumn } from "./components/columns";
-import { format } from "date-fns";
-import { formatter } from "@/lib/utils";
 
 export default async function OrdersPage({
   params,

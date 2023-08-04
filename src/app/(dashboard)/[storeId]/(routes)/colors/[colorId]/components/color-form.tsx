@@ -1,14 +1,7 @@
 "use client";
 
-import { z } from "zod";
+import AlertModal from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
-import Heading from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
-import { Color } from "@prisma/client";
-import { Trash } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -17,11 +10,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import Heading from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
-import { toast } from "react-hot-toast";
+import { Separator } from "@/components/ui/separator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Color } from "@prisma/client";
 import axios from "axios";
+import { Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import AlertModal from "@/components/modals/alert-modal";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { z } from "zod";
 
 type ColorFormProps = {
   initialData: Color | null;

@@ -1,7 +1,7 @@
 import prismadb from "@/lib/db";
+import { format } from "date-fns";
 import SizeClient from "./components/client";
 import { SizeColumn } from "./components/columns";
-import { format } from "date-fns";
 
 export default async function SizesPage({
   params,

@@ -1,22 +1,20 @@
 "use client";
 
+import AlertModal from "@/components/modals/alert-modal";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ProductColumn } from "./columns";
-import { Button } from "@/components/ui/button";
-import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
-import {
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import toast from "react-hot-toast";
+import axios from "axios";
+import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
-import axios from "axios";
-import AlertModal from "@/components/modals/alert-modal";
+import toast from "react-hot-toast";
+import { ProductColumn } from "./columns";
 
 type CellActionProps = {
   data: ProductColumn;

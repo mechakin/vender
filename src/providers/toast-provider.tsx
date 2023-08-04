@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 
 export const ToastProvider = () => {
   const { resolvedTheme } = useTheme();
-  const isDarkMode = resolvedTheme === 'dark'
+  const isDarkMode = resolvedTheme === "dark";
 
   return (
     <Toaster
@@ -13,8 +13,8 @@ export const ToastProvider = () => {
       toastOptions={{
         style: {
           borderRadius: "10px",
-          background: isDarkMode ? '#292524' : '#fff',
-          color: isDarkMode ? '#fff' : '#292524',
+          background: isDarkMode ? "#292524" : "#fff",
+          color: isDarkMode ? "#fff" : "#292524",
         },
       }}
     />

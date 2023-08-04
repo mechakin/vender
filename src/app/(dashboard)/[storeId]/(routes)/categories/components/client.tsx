@@ -1,13 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { DataTable } from "@/components/ui/data-table";
 import Heading from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { CategoryColumn, columns } from "./columns";
-import { DataTable } from "@/components/ui/data-table";
-import ApiList from "@/components/ui/api-list";
 
 type CategoryClientProps = {
   data: CategoryColumn[];
@@ -32,7 +31,7 @@ export default function CategoryClient({ data }: CategoryClientProps) {
         </Button>
       </div>
       <Separator />
-      <DataTable columns={columns} data={data} searchKey="name"/>
+      <DataTable columns={columns} data={data} searchKey="name" />
     </>
   );
 }

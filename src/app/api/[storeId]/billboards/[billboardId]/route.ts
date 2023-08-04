@@ -23,7 +23,6 @@ export async function GET(
   }
 }
 
-
 export async function PATCH(
   req: Request,
   { params }: { params: { storeId: string; billboardId: string } }
@@ -101,4 +100,3 @@ export async function DELETE(
     return new NextResponse("Internal error", { status: 500 });
   }
 }
-

@@ -1,8 +1,8 @@
-import Stripe from "stripe";
 import { NextResponse } from "next/server";
+import Stripe from "stripe";
 
-import { stripe } from "@/lib/stripe";
 import prismadb from "@/lib/db";
+import { stripe } from "@/lib/stripe";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",

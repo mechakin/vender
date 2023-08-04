@@ -1,12 +1,7 @@
 "use client";
 
-import { z } from "zod";
+import AlertModal from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
-import Heading from "@/components/ui/heading";
-import { Trash } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -15,13 +10,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import Heading from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
-import { toast } from "react-hot-toast";
-import axios from "axios";
-import { useParams, useRouter } from "next/navigation";
-import AlertModal from "@/components/modals/alert-modal";
-import { Category } from "@prisma/client";
 import { Separator } from "@/components/ui/separator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Category } from "@prisma/client";
+import axios from "axios";
+import { Trash } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { z } from "zod";
 
 type CategoryFormProps = {
   initialData: Category | null;

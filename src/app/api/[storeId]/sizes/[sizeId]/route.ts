@@ -23,7 +23,6 @@ export async function GET(
   }
 }
 
-
 export async function PATCH(
   req: Request,
   { params }: { params: { storeId: string; sizeId: string } }
@@ -36,8 +35,7 @@ export async function PATCH(
 
     if (!userId) return new NextResponse("Unauthenticated", { status: 401 });
     if (!name) return new NextResponse("Name is required", { status: 400 });
-    if (!value)
-      return new NextResponse("Value is required", { status: 400 });
+    if (!value) return new NextResponse("Value is required", { status: 400 });
     if (!params.sizeId)
       return new NextResponse("Size ID is required", { status: 400 });
 
@@ -101,4 +99,3 @@ export async function DELETE(
     return new NextResponse("Internal error", { status: 500 });
   }
 }
-

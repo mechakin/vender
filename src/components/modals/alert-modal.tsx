@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Modal } from "@/components/ui/modal";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 
 type AlertModalProps = {

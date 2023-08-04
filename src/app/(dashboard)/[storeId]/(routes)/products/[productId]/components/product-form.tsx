@@ -1,14 +1,8 @@
 "use client";
 
-import { z } from "zod";
+import AlertModal from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
-import Heading from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
-import { Product, Image, Category, Color, Size } from "@prisma/client";
-import { Trash } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -18,12 +12,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { toast } from "react-hot-toast";
-import axios from "axios";
-import { useParams, useRouter } from "next/navigation";
-import AlertModal from "@/components/modals/alert-modal";
+import Heading from "@/components/ui/heading";
 import ImageUpload from "@/components/ui/image-upload";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -31,8 +22,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Category, Color, Image, Product, Size } from "@prisma/client";
+import axios from "axios";
+import { Trash } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { z } from "zod";
 
 type ProductFormProps = {
   initialData:

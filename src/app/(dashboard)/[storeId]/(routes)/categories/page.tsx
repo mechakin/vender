@@ -1,7 +1,7 @@
 import prismadb from "@/lib/db";
+import { format } from "date-fns";
 import CategoryClient from "./components/client";
 import { CategoryColumn } from "./components/columns";
-import { format } from "date-fns";
 
 export default async function CategoriesPage({
   params,

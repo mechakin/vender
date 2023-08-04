@@ -1,22 +1,20 @@
 "use client";
 
+import AlertModal from "@/components/modals/alert-modal";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { SizeColumn } from "./columns";
-import { Button } from "@/components/ui/button";
-import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
-import {
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import toast from "react-hot-toast";
+import axios from "axios";
+import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
-import axios from "axios";
-import AlertModal from "@/components/modals/alert-modal";
+import toast from "react-hot-toast";
+import { SizeColumn } from "./columns";
 
 type CellActionProps = {
   data: SizeColumn;
@@ -36,15 +34,11 @@ export default function CellAction({ data }: CellActionProps) {
   const onConfirm = async () => {
     try {
       setLoading(true);
-      await axios.delete(
-        `/api/${params.storeId}/sizes/${data.id}`
-      );
+      await axios.delete(`/api/${params.storeId}/sizes/${data.id}`);
       toast.success("Size deleted.");
       router.refresh();
     } catch (error) {
-      toast.error(
-        "Make sure you removed all products using this size first."
-      );
+      toast.error("Make sure you removed all products using this size first.");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -73,9 +67,7 @@ export default function CellAction({ data }: CellActionProps) {
             Copy ID
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() =>
-              router.push(`/${params.storeId}/sizes/${data.id}`)
-            }
+            onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}
           >
             <Edit className="mr-2 h-4 w-4" />
             Update

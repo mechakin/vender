@@ -1,8 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,6 +8,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { useParams, usePathname } from "next/navigation";
 
 export function MainNav({
   className,
