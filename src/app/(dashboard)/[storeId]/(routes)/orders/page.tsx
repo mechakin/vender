@@ -17,6 +17,7 @@ export default async function OrdersPage({
       orderItems: {
         include: {
           product: true,
+          size: true,
         },
       },
     },
@@ -29,6 +30,7 @@ export default async function OrdersPage({
     id: item.id,
     phone: item.phone,
     address: item.address,
+    size: item.orderItems.map((orderItem) => orderItem.size.value),
     products: item.orderItems
       .map((orderItem) => orderItem.product.name)
       .join(", "),

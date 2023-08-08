@@ -10,12 +10,17 @@ export type OrderColumn = {
   totalPrice: string;
   products: string;
   createdAt: string;
+  size: string[];
 };
 
 export const columns: ColumnDef<OrderColumn>[] = [
   {
     accessorKey: "products",
     header: "Products",
+  },
+  {
+    accessorKey: "size",
+    header: "Size",
   },
   {
     accessorKey: "phone",

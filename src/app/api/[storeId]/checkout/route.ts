@@ -18,10 +18,13 @@ export async function POST(
   req: Request,
   { params }: { params: { storeId: string } }
 ) {
-  const { productIds } = await req.json();
+  const { productIds, sizeIds } = await req.json();
 
   if (!productIds || productIds.length === 0)
-    return new NextResponse("Product ids are required", { status: 400 });
+    return new NextResponse("Product IDs are required", { status: 400 });
+
+  if (!sizeIds || sizeIds.length === 0)
+    return new NextResponse("Size IDs are required", { status: 400 });
 
   const products = await prismadb.product.findMany({
     where: {
@@ -51,10 +54,15 @@ export async function POST(
       storeId: params.storeId,
       isPaid: false,
       orderItems: {
-        create: productIds.map((productId: string) => ({
+        create: productIds.map((productId: string, index: number) => ({
           product: {
             connect: {
               id: productId,
+            },
+          },
+          size: {
+            connect: {
+              id: sizeIds[index], 
             },
           },
         })),

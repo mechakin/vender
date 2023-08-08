@@ -47,14 +47,15 @@ model Category {
 }
 
 model Size {
-  id        String            @id @default(uuid())
-  storeId   String
-  store     Store             @relation("StoreToSize", fields: [storeId], references: [id])
-  name      String
-  value     String
-  product   SizesOnProducts[]
-  createdAt DateTime          @default(now())
-  updatedAt DateTime          @updatedAt
+  id         String            @id @default(uuid())
+  storeId    String
+  store      Store             @relation("StoreToSize", fields: [storeId], references: [id])
+  name       String
+  value      String
+  products    SizesOnProducts[]
+  orderItems OrderItem[]
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
 
   @@index([storeId])
 }
@@ -138,7 +139,10 @@ model OrderItem {
   order     Order?  @relation(fields: [orderId], references: [id])
   productId String
   product   Product @relation(fields: [productId], references: [id])
+  sizeId    String
+  size      Size    @relation(fields: [sizeId], references: [id])
 
   @@index([orderId])
   @@index([productId])
+  @@index([sizeId])
 }

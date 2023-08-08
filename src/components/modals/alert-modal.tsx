@@ -1,7 +1,6 @@
 "use client";
 
 import { Modal } from "@/components/ui/modal";
-import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 
 type AlertModalProps = {
@@ -17,14 +16,6 @@ export default function AlertModal({
   onConfirm,
   loading,
 }: AlertModalProps) {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
   return (
     <Modal
       title="Are you sure?"

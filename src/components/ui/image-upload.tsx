@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { UploadButton } from "@/lib/uploadthing";
 import { Trash } from "lucide-react";
 import Image from "next/image";
-import { UploadButton } from "@/lib/uploadthing";
 import toast from "react-hot-toast";
 
 type ImageUploadProps = {
@@ -18,17 +17,9 @@ export default function ImageUpload({
   onRemove,
   value,
 }: ImageUploadProps) {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const onUpload = (result: string) => {
     onChange(result);
   };
-
-  if (!isMounted) return null;
 
   return (
     <>
@@ -48,7 +39,12 @@ export default function ImageUpload({
                 <Trash className="h-4 w-4" />
               </Button>
             </div>
-            <Image fill className="object-cover object-top" alt="Image" src={url} />
+            <Image
+              fill
+              className="object-cover object-top"
+              alt="Image"
+              src={url}
+            />
           </div>
         ))}
       </div>
