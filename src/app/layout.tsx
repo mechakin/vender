@@ -4,14 +4,16 @@ import { ToastProvider } from "@/providers/toast-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import "@uploadthing/react/styles.css";
+import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Dashboard",
-  description: "Dashboard",
+export const metadata: Metadata = {
+  title: "Vender",
+  description:
+    "Your all-in-one store management solution. Streamline operations, track sales, and enhance customer experiences with ease.",
 };
 
 export default function RootLayout({
