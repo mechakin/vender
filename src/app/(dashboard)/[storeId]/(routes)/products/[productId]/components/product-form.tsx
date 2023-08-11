@@ -288,7 +288,13 @@ export default function ProductForm({
                     <SelectContent>
                       {colors.map((color) => (
                         <SelectItem key={color.id} value={color.id}>
-                          {color.name}
+                          <div className="flex items-center">
+                            {color.name}
+                            <div
+                              className="ml-2 h-5 w-5 rounded-full"
+                              style={{ backgroundColor: color.value }}
+                            />
+                          </div>
                         </SelectItem>
                       ))}
                     </SelectContent>
