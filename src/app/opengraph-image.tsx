@@ -12,11 +12,6 @@ export const size = {
  
 export const contentType = 'image/png'
  
-// Font
-const interBold = fetch(new URL("../../public/Inter-Bold.ttf", import.meta.url), { cache: 'no-cache' }).then(
-  (res) => res.arrayBuffer()
-);
- 
 // Image generation
 export default async function Image() {
   return new ImageResponse(
@@ -43,14 +38,6 @@ export default async function Image() {
       // For convenience, we can re-use the exported opengraph-image
       // size config to also set the ImageResponse's width and height.
       ...size,
-      fonts: [
-        {
-          name: 'Inter',
-          data: await interBold,
-          style: 'normal',
-          weight: 400,
-        },
-      ],
     }
   )
 }
