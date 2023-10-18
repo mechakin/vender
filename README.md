@@ -1,34 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![demo](https://media.discordapp.net/attachments/1106206570091663410/1163612175244460122/demo.png?ex=65403549&is=652dc049&hm=633b82b267ad8447d48fedc588c1e763ed9c48d7991809a506eba62fb61cad1d&=&width=954&height=528)
 
-## Getting Started
+## About
 
-First, run the development server:
+Vender is a versatile Content Management System (CMS) designed to empower users with an array of features and tools for managing and presenting digital content effortlessly. Our CMS offers an intuitive and user-friendly interface, making it accessible for users of all levels, from beginners to seasoned web developers. With Vender, you can focus on content and user experience, as we simplify website management, making it a perfect choice for all your digital projects.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+You can see the website live in action here: [https://youtu.be/0LIP635bZdQ]
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I appreciate your interest, but I'm currently not seeking contributions for this particular project. Thanks for understanding!
